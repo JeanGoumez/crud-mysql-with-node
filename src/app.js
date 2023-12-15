@@ -4,6 +4,7 @@ import morgan from 'morgan';
 
 import clienteRoutes from './routes/cliente.routes.js';
 import cursoRoutes from './routes/curso.routes.js';
+import notaRoutes from './routes/nota.routes.js';
 import { fileURLToPath } from 'url';
 
 const port = process.env.PORT || 3000;
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 // routes
 app.use(clienteRoutes);
 app.use(cursoRoutes);
+app.use(notaRoutes);
 
 // static files
 // app.use(express.static(path.join(__dirname, 'public')));

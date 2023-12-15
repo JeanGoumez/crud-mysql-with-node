@@ -1,0 +1,55 @@
+<%- include("layout/topbar") %>
+<h1>Notas</h1>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-7">
+      <table class="table table-bordered table-hover">
+        <thead class="table table-dark">
+          <tr>
+            <td>N°</td>
+            <td>Estudiante</td>
+            <td>Curso</td>
+            <td>Nota</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (notas) { %> <% for(var i = 0; i < notas.length; i++) { %>
+          <tr>
+            <td><%= notas[i].idnota %></td>
+            <td><%= notas[i].nombreestudiante %></td>
+            <td><%= notas[i].nombrecurso %></td>
+            <td><%= notas[i].nota %></td>
+          </tr>
+          <% } %> <% } %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-5">
+      <div class="card-body">
+        <form action="/nota/add" method="POST">
+          <div class="form-control mb-2">
+            <label for="estudiante">Seleccione un estudiante:</label>
+            <select name="idestudiante" id="idestudiante">
+              <% rowsEstudiante.forEach(estudiante => { %>
+              <option value="<%= estudiante.idestudiante %>"><%= estudiante.nombreestudiante %></option>
+              <% }); %>
+            </select>
+          </div>
+
+          <div class="form-control mb-2">
+            <label for="curso">Seleccione un curso:</label>
+            <select name="idcurso" id="idcurso">
+              <% rowsCurso.forEach(curso => { %>
+              <option value="<%= curso.idcurso %>"><%= curso.nombrecurso %></option>
+              <% }); %>
+            </select>
+          </div>
+
+          <input type="text" name="nota" placeholder="nota" class="form-control mb-2" />
+
+          <button type="submit" class="btn btn-info">Guardar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
