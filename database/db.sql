@@ -45,7 +45,8 @@ CREATE TABLE IF NOT EXISTS `academico`.`estudiante` (
   `facultad` VARCHAR(255) NOT NULL,
   `estado` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`idestudiante`))
-ENGINE = InnoDB 
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
