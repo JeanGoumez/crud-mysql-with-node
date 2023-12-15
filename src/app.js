@@ -1,35 +1,29 @@
-const express = require('express');
-const myConnection = require('express-myconnection');
-const mysql = require('mysql');
-const path = require('path');
-const { engine } = require('express-handlebars');
-const bodyParser = require('body-parser');
+import express from 'express';
+import path from 'path';
+import morgan from 'morgan';
 
-const morgan = require('morgan');
+import clienteRoutes from './routes/cliente.routes.js';
+import { fileURLToPath } from 'url';
+
+const port = process.env.PORT || 3000;
+
 const app = express();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-//port 3000
+// settings
 app.set('port', process.env.PORT || 3000);
-
-//settings
-app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
-//middleware
+// middlewares
 app.use(morgan('dev'));
-app.use(
-  myConnection(
-    mysql,
-    {
-      host: 'localhost',
-      user: 'root',
-      password: 'admin',
-      port: 3306,
-      database: 'academico',
-    },
-    'single'
-  )
-);
+app.use(express.urlencoded({ extended: false }));
+
+// routes
+app.use(clienteRoutes);
+
+// static files
+// app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(app.get('port'), () => {
   console.log('server on');
