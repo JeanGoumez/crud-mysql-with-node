@@ -27,7 +27,7 @@ export const updateCliente = async (req, res) => {
 
 export const deleteCliente = async (req, res) => {
   const { id } = req.params;
-  const result = await pool.query('DELETE FROM estudiante WHERE idestudiante = ?', [id]);
+  const result = await pool.query('UPDATE estudiante set estado = 0 WHERE idestudiante = ?', [id]);
   if (result.affectedRows === 1) {
     res.json({ message: 'Cliente deleted' });
   }

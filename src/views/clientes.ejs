@@ -1,5 +1,5 @@
 <%- include("layout/topbar") %>
-
+<h1>Estudiantes</h1>
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-7">
@@ -11,6 +11,7 @@
             <td>Apellido</td>
             <td>Carrera</td>
             <td>Facultad</td>
+            <td>Estado</td>
             <td>Accion</td>
           </tr>
         </thead>
@@ -22,9 +23,10 @@
             <td><%= estudiantes[i].apellido %></td>
             <td><%= estudiantes[i].carrera %></td>
             <td><%= estudiantes[i].facultad %></td>
+            <td><%= estudiantes[i].estado %></td>
             <td class="d-flex gap-2">
-              <a href="/update/<%= estudiantes[i].idestudiante %>" class="btn btn-info"> Editar </a>
-              <a href="/delete/<%= estudiantes[i].idestudiante %>" class="btn btn-danger"> Eliminar </a>
+              <a href="/estudiante/update/<%= estudiantes[i].idestudiante %>" class="btn btn-info"> Editar </a>
+              <a href="/estudiante/delete/<%= estudiantes[i].idestudiante %>" class="btn btn-danger"> Eliminar </a>
             </td>
           </tr>
           <% } %> <% } %>
@@ -33,7 +35,7 @@
     </div>
     <div class="col-md-5">
       <div class="card-body">
-        <form action="/add" method="POST">
+        <form action="/estudiante/add" method="POST">
           <input type="text" name="nombre" placeholder="nombre" class="form-control mb-2" autofocus />
           <input type="text" name="apellido" placeholder="apellido" class="form-control mb-2" />
           <input type="text" name="carrera" placeholder="carrera" class="form-control mb-2" />

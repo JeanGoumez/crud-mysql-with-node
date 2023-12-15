@@ -1,0 +1,49 @@
+<%- include("layout/topbar") %>
+<h1>Curso</h1>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-7">
+      <table class="table table-bordered table-hover">
+        <thead class="table table-dark">
+          <tr>
+            <td>N°</td>
+            <td>Nombre</td>
+            <td>Codigo</td>
+            <td>Credito</td>
+            <td>Profesor</td>
+            <td>Estado</td>
+            <td>Accion</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (cursos) { %> <% for(var i = 0; i < cursos.length; i++) { %>
+          <tr>
+            <td><%= cursos[i].idcurso %></td>
+            <td><%= cursos[i].nombre %></td>
+            <td><%= cursos[i].codigo %></td>
+            <td><%= cursos[i].credito %></td>
+            <td><%= cursos[i].profesor %></td>
+            <td><%= cursos[i].estado %></td>
+            <td class="d-flex gap-2">
+              <a href="/curso/update/<%= cursos[i].idcurso %>" class="btn btn-info"> Editar </a>
+              <a href="/curso/delete/<%= cursos[i].idcurso %>" class="btn btn-danger"> Eliminar </a>
+            </td>
+          </tr>
+          <% } %> <% } %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-5">
+      <div class="card-body">
+        <form action="/curso/add" method="POST">
+          <input type="text" name="nombre" placeholder="nombre" class="form-control mb-2" autofocus />
+          <input type="text" name="codigo" placeholder="codigo" class="form-control mb-2" />
+          <input type="number" name="credito" placeholder="credito" class="form-control mb-2" />
+          <input type="text" name="profesor" placeholder="profesor" class="form-control mb-2" />
+
+          <button type="submit" class="btn btn-info">Guardar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
